@@ -1,0 +1,12 @@
+<div *ngIf="homeModel.isError; else catsByOwnerGender" >
+  <div>Sorry, something went wrong: Please try again later!</div>
+</div>
+
+<ng-template #catsByOwnerGender>
+  <div *ngFor="let cats of homeModel.cats">
+    <h3>{{cats.ownerGender}}</h3>
+    <ul *ngFor="let cat of cats.petNames">
+      <li>{{cat}}</li>
+    </ul>
+  </div>
+</ng-template>
