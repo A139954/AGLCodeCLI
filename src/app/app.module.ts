@@ -7,7 +7,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 
-import { AppDataService } from './service/appData.service';
+import { MyConfigService } from './service/myConfig.service';
 import { IPersonService } from './service/iperson.service';
 import { PersonService } from './service/person.service';
 
@@ -28,7 +28,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AppDataService , PersonService],
+  providers: [PersonService, MyConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

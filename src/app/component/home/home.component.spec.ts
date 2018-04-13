@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing'
 
 import { PersonService } from '../../service/person.service';
 import { HomeComponent } from './home.component';
-import { AppDataService } from '../../service/appData.service';
+import { MyConfigService } from '../../service/myConfig.service';
 import { Http, XHRBackend, HttpModule } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { Injectable, Injector} from '@angular/core';
@@ -20,7 +20,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       imports: [HttpModule],
-      providers: [ PersonService, AppDataService,
+      providers: [ PersonService, MyConfigService,
         { provide: XHRBackend, useClass: MockBackend }
        ]
     })

@@ -5,18 +5,18 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { IPersonService } from './iperson.service';
-import { AppDataService } from './appData.service';
 import { Person } from '../model/person.model';
+import { MyConfigService } from './myConfig.service';
 
 @Injectable()
 export class PersonService implements IPersonService {
   constructor(
     private http: Http,
-    private appData: AppDataService,
-) { }
+    private myConfig: MyConfigService
+  ) { }
 
   public getPersonDetails(): Observable<Person[]> {
-    return this.http.get(this.appData.myAppData.jsonURL)
+    return this.http.get(this.myConfig.apiEndPoint)
             .catch((err: Response) => {
                 console.log(err);
                 return Observable.throw(err.json());

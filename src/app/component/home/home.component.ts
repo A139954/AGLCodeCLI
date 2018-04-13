@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PersonService } from '../../service/person.service';
-import { PetsByOwnerGender } from '../../model/petsByOwnerGender.model';
+import { OwnerGenderWithPets } from '../../model/ownerGenderWithPets.model';
 import { HomeModel } from '../../model/home.model';
 import { Person } from '../../model/person.model';
 
@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getCatsByOwnerGender(data: Person[]): PetsByOwnerGender[] {
-    const catsByOwnerGenderArr: PetsByOwnerGender[] = [];
+  getCatsByOwnerGender(data: Person[]): OwnerGenderWithPets[] {
+    const ownerGenderWithPetsArr: OwnerGenderWithPets[] = [];
     if ( data !== null || data !== undefined ) {
       const filteredArray = data.filter( el => {
         return el.pets && el.pets.some(e => e.type !== null && e.type === 'Cat');
@@ -38,22 +38,22 @@ export class HomeComponent implements OnInit {
       const ownerGender = [];
       filteredArray.forEach (e => { if (ownerGender.indexOf(e.gender) === -1) {ownerGender.push(e.gender); } });
       ownerGender.forEach( gender => {
-        const catsByOwnerGender = new PetsByOwnerGender();
-        catsByOwnerGender.ownerGender = gender;
-        catsByOwnerGender.petNames = [];
+        const ownerGenderWithPets = new OwnerGenderWithPets();
+        ownerGenderWithPets.ownerGender = gender;
+        ownerGenderWithPets.petNames = [];
         filteredArray.forEach(e => {
           if ( e.gender === gender ) {
             e.pets.forEach(pet => {
               if ( pet.type === 'Cat' ) {
-                catsByOwnerGender.petNames.push(pet.name);
+                ownerGenderWithPets.petNames.push(pet.name);
               }
             });
           }
         });
-        catsByOwnerGender.petNames.sort();
-        catsByOwnerGenderArr.push(catsByOwnerGender);
+        ownerGenderWithPets.petNames.sort();
+        ownerGenderWithPetsArr.push(ownerGenderWithPets);
       });
     }
-    return catsByOwnerGenderArr;
+    return ownerGenderWithPetsArr;
   }
 }
