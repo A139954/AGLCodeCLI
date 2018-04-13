@@ -43,10 +43,9 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
     tick();
 
-    // homemodel and its propertity cats should not be null and isError should be false
+    // homemodel should not be null and isError should be false
     expect(component.homeModel).not.toBe(null);
     expect(component.homeModel.isError).toBe(false);
-    expect(component.homeModel.cats).not.toBe(null);
 
     // owner gender should not be null and should have only two gender male,female
     expect(component.homeModel.cats[0].ownerGender).not.toBe(null);
@@ -67,7 +66,7 @@ describe('HomeComponent', () => {
 
   }));
 
-  it('getPersonDetails() - it should call personservice once to get person details', async(() => {
+  it('getPersonDetails() - it should call personservice to get person details', async(() => {
     const personAPI = fixture.debugElement.injector.get(PersonService);
     spyOn(personAPI, 'getPersonDetails').and.callThrough();
     component.ngOnInit();
@@ -76,14 +75,11 @@ describe('HomeComponent', () => {
 
   it('getCatsByOwnerGender() - should filter the data and return only cat names and owner gender who have cats only', fakeAsync(() => {
     const mockData = JSON.parse('[{"name":"Bob","gender":"Male","age":23,"pets":[{"name":"Garfield","type":"Cat"},{"name":"Fido","type":"Dog"}]},{"name":"Jennifer","gender":"Male","age":18,"pets":[{"name":"Tom","type":"Cat"}]},{"name":"Steve","gender":"Female","age":45,"pets":null}]');
-
     const catsByOwnerGender = component.getCatsByOwnerGender(mockData);
 
-    // should return only cats under male owner gender if there is no cat under female owner gender
+    // catsByOwnerGender should have only 2 cats under male owner gender if there is no cat under female owner gender
     expect(catsByOwnerGender.length).toBe(1);
     expect(catsByOwnerGender[0].ownerGender).toBe('Male');
-
-    // there should be 4 cats under male owner gender and 3 under female owner gender
     expect(catsByOwnerGender[0].petNames.length = 2);
 
     // cats should be in alphabatic order
