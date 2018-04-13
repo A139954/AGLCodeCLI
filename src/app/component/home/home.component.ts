@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PersonService } from '../../service/person.service';
-
 import { PetsByOwnerGender } from '../../model/petsByOwnerGender.model';
 import { HomeModel } from '../../model/home.model';
 import { Person } from '../../model/person.model';
