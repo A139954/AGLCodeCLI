@@ -28,7 +28,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PersonService, MyConfigService],
+  providers: [{ provide: IPersonService, useClass: PersonService},
+     MyConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
