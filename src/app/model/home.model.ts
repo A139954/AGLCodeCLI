@@ -1,7 +1,7 @@
-import {  PetsByOwnerGender } from './PetsByOwnerGender.model';
+import {  OwnerGenderWithPets } from './ownerGenderWithPets.model';
 
 export class HomeModel {
-  cats: PetsByOwnerGender[];
+  cats: OwnerGenderWithPets[];
   isError: boolean;
 
   constructor() {
