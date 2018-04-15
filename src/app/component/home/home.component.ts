@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PersonService } from '../../service/person.service';
+import { IPersonService } from '../../service/iperson.service';
 import { OwnerGenderWithPets } from '../../model/ownerGenderWithPets.model';
 import { HomeModel } from '../../model/home.model';
 import { Person } from '../../model/person.model';
@@ -15,20 +15,20 @@ export class HomeComponent implements OnInit {
 
   public homeModel: HomeModel;
 
-  constructor(private _person: PersonService) {
+  constructor(private _person: IPersonService) {
     this.homeModel = new HomeModel();
   }
 
   ngOnInit(): void {
     this._person.getPersonDetails().subscribe((data) => {
-        this.homeModel.cats = this.getCatsByOwnerGender(data);
+        this.homeModel.cats = this.getOwnerGenderWithCats(data);
     }, (err) => {
         console.error(err);
         this.homeModel.isError = true;
     });
   }
 
-  getCatsByOwnerGender(data: Person[]): OwnerGenderWithPets[] {
+  getOwnerGenderWithCats(data: Person[]): OwnerGenderWithPets[] {
     const ownerGenderWithPetsArr: OwnerGenderWithPets[] = [];
     if ( data !== null || data !== undefined ) {
       const filteredArray = data.filter( el => {
