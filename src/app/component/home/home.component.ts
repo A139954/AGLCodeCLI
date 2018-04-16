@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IPersonService } from '../../service/iperson.service';
+import { PersonService } from '../../service/person.service';
 import { OwnerGenderWithPets } from '../../model/ownerGenderWithPets.model';
 import { HomeModel } from '../../model/home.model';
 import { Person } from '../../model/person.model';
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   public homeModel: HomeModel;
 
-  constructor(private _person: IPersonService) {
+  constructor(private _person: PersonService) {
     this.homeModel = new HomeModel();
   }
 

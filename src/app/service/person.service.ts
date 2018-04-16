@@ -4,16 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
-import { IPersonService } from './iperson.service';
 import { Person } from '../model/person.model';
 import { environment } from '../../environments/environment';
-// import { MyConfigService } from './myConfig.service';
 
 @Injectable()
-export class PersonService implements IPersonService {
+export class PersonService {
   constructor(
     private http: Http
-    // private myConfig: MyConfigService
   ) { }
 
   public getPersonDetails(): Observable<Person[]> {

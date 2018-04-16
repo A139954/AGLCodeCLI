@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
-// import { MyConfigService } from '../../service/myConfig.service';
-import { IPersonService } from '../../service/iperson.service';
 import { PersonService } from '../../service/person.service';
 import { HomeComponent } from './home.component';
 
@@ -22,8 +20,7 @@ describe('HomeComponent', () => {
       TestBed.configureTestingModule({
         declarations: [ HomeComponent ],
         imports: [HttpModule],
-        providers: [
-          { provide: IPersonService, useClass: PersonService},
+        providers: [ PersonService,
           { provide: XHRBackend, useClass: MockBackend }
         ]
       })
@@ -82,7 +79,7 @@ describe('HomeComponent', () => {
   }));
 
   it('ngOnInit() - it should call getPersonDetails() once to get person details', async(() => {
-    const personAPI = fixture.debugElement.injector.get(IPersonService);
+    const personAPI = fixture.debugElement.injector.get(PersonService);
     spyOn(personAPI, 'getPersonDetails').and.callThrough();
     component.ngOnInit();
     expect(personAPI.getPersonDetails).toHaveBeenCalledTimes(1);
